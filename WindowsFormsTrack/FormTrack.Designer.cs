@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsTrack
 {
-    partial class FormBenzovoz
+    partial class FormTrack
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonCreateBenzo = new System.Windows.Forms.Button();
+            this.buttonCreateBenzovoz = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
-            this.pictureBoxBenzo = new System.Windows.Forms.PictureBox();
+            this.pictureBoxTrack = new System.Windows.Forms.PictureBox();
             this.buttonCreateTrack = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBenzo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTrack)).BeginInit();
             this.SuspendLayout();
             // 
-            // buttonCreateBenzo
+            // buttonCreateBenzovoz
             // 
-            this.buttonCreateBenzo.Location = new System.Drawing.Point(181, 10);
-            this.buttonCreateBenzo.Name = "buttonCreateBenzo";
-            this.buttonCreateBenzo.Size = new System.Drawing.Size(169, 29);
-            this.buttonCreateBenzo.TabIndex = 1;
-            this.buttonCreateBenzo.Text = "Создать бензовоз";
-            this.buttonCreateBenzo.UseVisualStyleBackColor = true;
-            this.buttonCreateBenzo.Click += new System.EventHandler(this.buttonCreate_Click);
+            this.buttonCreateBenzovoz.Location = new System.Drawing.Point(181, 10);
+            this.buttonCreateBenzovoz.Name = "buttonCreateBenzovoz";
+            this.buttonCreateBenzovoz.Size = new System.Drawing.Size(169, 29);
+            this.buttonCreateBenzovoz.TabIndex = 1;
+            this.buttonCreateBenzovoz.Text = "Создать бензовоз";
+            this.buttonCreateBenzovoz.UseVisualStyleBackColor = true;
+            this.buttonCreateBenzovoz.Click += new System.EventHandler(this.buttonCreateBenzovoz_Click);
             // 
             // buttonDown
             // 
@@ -96,14 +96,14 @@
             this.buttonLeft.UseVisualStyleBackColor = true;
             this.buttonLeft.Click += new System.EventHandler(this.buttonMove_Click);
             // 
-            // pictureBoxBenzo
+            // pictureBoxTrack
             // 
-            this.pictureBoxBenzo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxBenzo.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxBenzo.Name = "pictureBoxBenzo";
-            this.pictureBoxBenzo.Size = new System.Drawing.Size(884, 461);
-            this.pictureBoxBenzo.TabIndex = 0;
-            this.pictureBoxBenzo.TabStop = false;
+            this.pictureBoxTrack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxTrack.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxTrack.Name = "pictureBoxTrack";
+            this.pictureBoxTrack.Size = new System.Drawing.Size(884, 461);
+            this.pictureBoxTrack.TabIndex = 0;
+            this.pictureBoxTrack.TabStop = false;
             // 
             // buttonCreateTrack
             // 
@@ -113,9 +113,9 @@
             this.buttonCreateTrack.TabIndex = 6;
             this.buttonCreateTrack.Text = "Создать грузовик";
             this.buttonCreateTrack.UseVisualStyleBackColor = true;
-            this.buttonCreateTrack.Click += new System.EventHandler(this.buttonCreateTrack_Click);
+            this.buttonCreateTrack.Click += new System.EventHandler(this.buttonCreatePlane_Click);
             // 
-            // FormBenzovoz
+            // FormTrack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -125,20 +125,20 @@
             this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.buttonUp);
             this.Controls.Add(this.buttonLeft);
-            this.Controls.Add(this.buttonCreateBenzo);
-            this.Controls.Add(this.pictureBoxBenzo);
-            this.Name = "FormBenzovoz";
+            this.Controls.Add(this.buttonCreateBenzovoz);
+            this.Controls.Add(this.pictureBoxTrack);
+            this.Name = "FormTrack";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBenzo)).EndInit();
+            this.Text = "FormTrack";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTrack)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxBenzo;
-        private System.Windows.Forms.Button buttonCreateBenzo;
+        public System.Windows.Forms.PictureBox pictureBoxTrack;
+        private System.Windows.Forms.Button buttonCreateBenzovoz;
         private System.Windows.Forms.Button buttonLeft;
         private System.Windows.Forms.Button buttonUp;
         private System.Windows.Forms.Button buttonRight;

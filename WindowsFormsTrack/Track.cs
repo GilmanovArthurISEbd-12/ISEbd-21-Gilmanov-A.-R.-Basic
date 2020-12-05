@@ -4,25 +4,25 @@ namespace WindowsFormsTrack
 {
     public class Track : Vehicle
     {
-        protected readonly int BenzWidth = 100;
-       
-        protected readonly int BenzHeight = 100;
-       
+        protected readonly int trackWidth = 100;
+ 
+        protected readonly int trackHeight = 100;
+
         public Track(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
         }
-       
-        protected Track(int maxSpeed, float weight, Color mainColor, int benzWidth, int
-       benzHeight)
+
+        protected Track(int maxSpeed, float weight, Color mainColor, int trackWidth, int
+       trackHeight)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
-            this.BenzWidth = benzWidth;
-            this.BenzHeight = benzHeight;
+            this.trackWidth = trackWidth;
+            this.trackHeight = trackHeight;
         }
 
         public override void MoveTransport(Direction direction)
@@ -32,13 +32,12 @@ namespace WindowsFormsTrack
             {
                 // вправо
                 case Direction.Right:
-                    if (_startPosX + step < _pictureWidth - BenzWidth)
+                    if (_startPosX + step < _pictureWidth - trackWidth)
                     {
                         _startPosX += step;
                     }
                     break;
-                //влево
-                case Direction.Left:
+                    //влево
                     if (_startPosX - step > 0)
                     {
                         _startPosX -= step;
@@ -53,25 +52,27 @@ namespace WindowsFormsTrack
                     break;
                 //вниз
                 case Direction.Down:
-                    if (_startPosY + step < _pictureHeight - BenzHeight)
+                    if (_startPosY + step < _pictureHeight - trackHeight)
                     {
                         _startPosY += step;
                     }
                     break;
             }
         }
-
         public override void DrawTransport(Graphics g)
         {
             System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(MainColor);
-            Brush brush = new SolidBrush(Color.Black);
-            //Os`
-            g.FillRectangle(myBrush, _startPosX + 35, _startPosY + 70, 120, 10);
-            g.FillRectangle(myBrush, _startPosX + 120, _startPosY + 45, 35, 25);
-            //wheels
-            g.FillEllipse(brush, _startPosX + 125, _startPosY + 75, 15, 15);
-            g.FillEllipse(brush, _startPosX + 65, _startPosY + 75, 15, 15);
-            g.FillEllipse(brush, _startPosX + 46, _startPosY + 75, 15, 15);
+            Pen blackPen = new Pen(Color.FromArgb(255, 0, 0, 0), 9);
+
+            //ось
+            g.FillRectangle(myBrush, _startPosX + 5, _startPosY + 50, 85, 10);
+            //кабина
+            g.FillRectangle(myBrush, _startPosX + 55, _startPosY + 30, 35, 20);
+            //Колеса
+            g.DrawEllipse(blackPen, _startPosX + 10, _startPosY + 60, 12, 10);
+            g.DrawEllipse(blackPen, _startPosX + 30, _startPosY + 60, 12, 10);
+            g.DrawEllipse(blackPen, _startPosX + 65, _startPosY + 60, 12, 10);
+
         }
     }
 }
