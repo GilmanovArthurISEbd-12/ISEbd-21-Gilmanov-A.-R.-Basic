@@ -63,9 +63,9 @@ namespace WindowsFormsTrack.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap стрелка_вектор_png_1 {
+        internal static System.Drawing.Bitmap down {
             get {
-                object obj = ResourceManager.GetObject("стрелка-вектор-png-1", resourceCulture);
+                object obj = ResourceManager.GetObject("down", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace WindowsFormsTrack.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap стрелка_вектор_png_2 {
+        internal static System.Drawing.Bitmap left {
             get {
-                object obj = ResourceManager.GetObject("стрелка-вектор-png-2", resourceCulture);
+                object obj = ResourceManager.GetObject("left", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace WindowsFormsTrack.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap стрелка_вектор_png_3 {
+        internal static System.Drawing.Bitmap right {
             get {
-                object obj = ResourceManager.GetObject("стрелка-вектор-png-3", resourceCulture);
+                object obj = ResourceManager.GetObject("right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,19 +93,9 @@ namespace WindowsFormsTrack.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap стрелка_вектор_png_4 {
+        internal static System.Drawing.Bitmap rightarrows_878801 {
             get {
-                object obj = ResourceManager.GetObject("стрелка-вектор-png-4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap стрелка_вектор_png_5 {
-            get {
-                object obj = ResourceManager.GetObject("стрелка-вектор-png-5", resourceCulture);
+                object obj = ResourceManager.GetObject("rightarrows_878801", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{90A6AF1F-FC7A-4F41-83E8-D1C469707FAD}</ProjectGuid>
+    <ProjectGuid>{B55BD614-894C-471D-8233-18C1DA9F1A32}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>WindowsFormsTrack</RootNamespace>
     <AssemblyName>WindowsFormsTrack</AssemblyName>
@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,8 +69,11 @@
     <Compile Include="FormTrack.Designer.cs">
       <DependentUpon>FormTrack.cs</DependentUpon>
     </Compile>
+    <Compile Include="ITransport.cs" />
+    <Compile Include="Track.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vehicle.cs" />
     <EmbeddedResource Include="FormTrack.resx">
       <DependentUpon>FormTrack.cs</DependentUpon>
     </EmbeddedResource>
@@ -83,19 +101,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\стрелка-вектор-png-1.png" />
+    <None Include="Resources\right.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\стрелка-вектор-png-2.png" />
+    <None Include="Resources\rightarrows_878801.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\стрелка-вектор-png-3.png" />
+    <None Include="Resources\down.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\стрелка-вектор-png-4.png" />
+    <None Include="Resources\left.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\стрелка-вектор-png-5.png" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

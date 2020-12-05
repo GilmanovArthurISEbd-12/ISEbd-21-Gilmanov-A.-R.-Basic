@@ -8,12 +8,13 @@ namespace WindowsFormsTrack
 {
     static class Program
     {
+        
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormTrack());
+            Application.Run(new FormBenzovoz());
         }
     }
 }
