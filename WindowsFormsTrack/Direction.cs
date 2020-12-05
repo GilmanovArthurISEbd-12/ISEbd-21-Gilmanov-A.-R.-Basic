@@ -14,4 +14,3 @@ namespace WindowsFormsTrack
         Right
     }
 }
-

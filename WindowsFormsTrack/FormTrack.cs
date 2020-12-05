@@ -7,44 +7,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsTrack;
 
 namespace WindowsFormsTrack
 {
-	public partial class FormBenzovoz : Form
+	public partial class FormTrack : Form
 	{
-		private ITransport Benzo;
-		public FormBenzovoz()
+		private ITransport track;
+
+		public FormTrack()
 		{
 			InitializeComponent();
 		}
 
+		public void SetTrack(ITransport track)
+		{
+			this.track = track;
+			Draw();
+	    }
+
 		private void Draw()
 		{
-			Bitmap bmp = new Bitmap(pictureBoxBenzo.Width, pictureBoxBenzo.Height);
+			Bitmap bmp = new Bitmap(pictureBoxTrack.Width, pictureBoxTrack.Height);
 			Graphics gr = Graphics.FromImage(bmp);
-			Benzo.DrawTransport(gr);
-			pictureBoxBenzo.Image = bmp;
+			track?.DrawTransport(gr);
+			pictureBoxTrack.Image = bmp;
 		}
 		
-		private void buttonCreate_Click(object sender, EventArgs e)
+		private void buttonCreateBenzovoz_Click(object sender, EventArgs e)
 		{
 			Random rnd = new Random();
-			Benzo = new Benzovoz(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue, Color.OrangeRed,
+			track = new Benzovoz(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue, Color.Black,
 		   true, true);
-			Benzo.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxBenzo.Width,
-		   pictureBoxBenzo.Height);
+			track.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTrack.Width,
+		   pictureBoxTrack.Height);
 			Draw();
 		}
 
-		private void buttonCreateTrack_Click(object sender, EventArgs e)
+		private void buttonCreatePlane_Click(object sender, EventArgs e)
 		{
 			Random rnd = new Random();
-			Benzo = new Track(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue);
-			Benzo.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxBenzo.Width,
-			pictureBoxBenzo.Height);
+			track = new Track(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue);
+			track.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTrack.Width,
+		   pictureBoxTrack.Height);
 			Draw();
-
 		}
 
 		private void buttonMove_Click(object sender, EventArgs e)
@@ -53,16 +58,16 @@ namespace WindowsFormsTrack
 			switch (name)
 			{
 				case "buttonUp":
-					Benzo.MoveTransport(Direction.Up);
+					track?.MoveTransport(Direction.Up);
 					break;
 				case "buttonDown":
-					Benzo.MoveTransport(Direction.Down);
+					track?.MoveTransport(Direction.Down);
 					break;
 				case "buttonLeft":
-					Benzo.MoveTransport(Direction.Left);
+					track?.MoveTransport(Direction.Left);
 					break;
 				case "buttonRight":
-					Benzo.MoveTransport(Direction.Right);
+					track?.MoveTransport(Direction.Right);
 					break;
 			}
 			Draw();
