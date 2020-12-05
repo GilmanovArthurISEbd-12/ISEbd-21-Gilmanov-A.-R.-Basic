@@ -1,11 +1,10 @@
 ﻿using System.Drawing;
-
 namespace WindowsFormsTrack
 {
     public class Track : Vehicle
     {
         protected readonly int trackWidth = 100;
- 
+
         protected readonly int trackHeight = 100;
 
         public Track(int maxSpeed, float weight, Color mainColor)
@@ -24,7 +23,6 @@ namespace WindowsFormsTrack
             this.trackWidth = trackWidth;
             this.trackHeight = trackHeight;
         }
-
         public override void MoveTransport(Direction direction)
         {
             float step = MaxSpeed * 100 / Weight;
@@ -37,7 +35,8 @@ namespace WindowsFormsTrack
                         _startPosX += step;
                     }
                     break;
-                    //влево
+                //влево
+                case Direction.Left:
                     if (_startPosX - step > 0)
                     {
                         _startPosX -= step;

@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsTrack
 {
-    class Parking<T> where T : class, ITransport
+	class Parking<T> where T : class, ITransport
     {
-        private readonly T[] _places;
+        private readonly List<T> _places;
+
+        private readonly int _maxCount = 12;
 
         private readonly int pictureWidth;
 
@@ -18,49 +20,51 @@ namespace WindowsFormsTrack
         private readonly int _placeSizeWidth = 210;
 
         private readonly int _placeSizeHeight = 110;
-
+ 
         public Parking(int picWidth, int picHeight)
         {
             int width = picWidth / _placeSizeWidth;
             int height = picHeight / _placeSizeHeight;
-            _places = new T[width * height];
+            _places = new List<T>();
             pictureWidth = picWidth;
             pictureHeight = picHeight;
+            _maxCount = width * height;
         }
 
         public static bool operator +(Parking<T> p, T track)
         {
-            for (int i = 0; i < p._places.Length; i++)
+
+            if (p._places.Count >= p._maxCount)
             {
-                if (p._places[i] == null)
-                {
-                    p._places[i] = track;
-                    return true;
-                }
+                return false;
             }
-            return false;
+
+            p._places.Add(track);
+            return true;
         }
 
         public static T operator -(Parking<T> p, int index)
         {
-            if (index < 0 || p._places.Length <= index)
+            if (index < -1 || index > p._places.Count)
             {
                 return null;
             }
-            T cash = p._places[index];
-            p._places[index] = null;
-            return cash;
+            T track = p._places[index];
+            p._places.RemoveAt(index);
+            return track;
+            
         }
 
         public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i = 0; i < _places.Length; ++i)
+
+            for (int i = 0; i < _places.Count; ++i)
             {
                 while (_places[i] == null)
                 {
                     i++;
-                    if (i == _places.Length)
+                    if (i == _places.Count)
                     {
                         return;
                     }
@@ -82,7 +86,7 @@ namespace WindowsFormsTrack
                    _placeSizeWidth + _placeSizeWidth / 2, j * _placeSizeHeight);
                 }
                 g.DrawLine(pen, i * _placeSizeWidth, 0, i * _placeSizeWidth,
-               (pictureHeight / _placeSizeHeight) * _placeSizeHeight);
+                (pictureHeight / _placeSizeHeight) * _placeSizeHeight);
             }
         }
     }
