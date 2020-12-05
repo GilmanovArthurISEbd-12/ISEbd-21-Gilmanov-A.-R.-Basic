@@ -32,7 +32,7 @@ namespace WindowsFormsTrack
 			track?.DrawTransport(gr);
 			pictureBoxTrack.Image = bmp;
 		}
-		
+
 		private void buttonCreateBenzovoz_Click(object sender, EventArgs e)
 		{
 			Random rnd = new Random();
@@ -48,12 +48,13 @@ namespace WindowsFormsTrack
 			Random rnd = new Random();
 			track = new Track(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue);
 			track.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTrack.Width,
-		   pictureBoxTrack.Height);
+			pictureBoxTrack.Height);
 			Draw();
 		}
 
 		private void buttonMove_Click(object sender, EventArgs e)
 		{
+			//получаем имя кнопки
 			string name = (sender as Button).Name;
 			switch (name)
 			{

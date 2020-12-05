@@ -53,7 +53,7 @@
             this.buttonDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDown.BackgroundImage = global::WindowsFormsTrack.Properties.Resources.down;
             this.buttonDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonDown.Location = new System.Drawing.Point(826, 398);
+            this.buttonDown.Location = new System.Drawing.Point(826, 431);
             this.buttonDown.Name = "buttonDown";
             this.buttonDown.Size = new System.Drawing.Size(30, 30);
             this.buttonDown.TabIndex = 5;
@@ -129,7 +129,7 @@
             this.Controls.Add(this.pictureBoxTrack);
             this.Name = "FormTrack";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormTrack";
+            this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTrack)).EndInit();
             this.ResumeLayout(false);
 
