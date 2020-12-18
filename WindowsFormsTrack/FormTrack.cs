@@ -13,7 +13,6 @@ namespace WindowsFormsTrack
 	public partial class FormTrack : Form
 	{
 		private ITransport track;
-
 		public FormTrack()
 		{
 			InitializeComponent();
@@ -41,20 +40,11 @@ namespace WindowsFormsTrack
 			track.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTrack.Width,
 		   pictureBoxTrack.Height);
 			Draw();
-		}
 
-		private void buttonCreatePlane_Click(object sender, EventArgs e)
-		{
-			Random rnd = new Random();
-			track = new Track(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue);
-			track.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTrack.Width,
-			pictureBoxTrack.Height);
-			Draw();
 		}
 
 		private void buttonMove_Click(object sender, EventArgs e)
 		{
-			//получаем имя кнопки
 			string name = (sender as Button).Name;
 			switch (name)
 			{
@@ -72,6 +62,16 @@ namespace WindowsFormsTrack
 					break;
 			}
 			Draw();
+		}
+
+        private void buttonCreateTrack_Click(object sender, EventArgs e)
+        {
+			Random rnd = new Random();
+			track = new Track(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue);
+			track.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxTrack.Width,
+            pictureBoxTrack.Height);
+			Draw();
+
 		}
 	}
 }
