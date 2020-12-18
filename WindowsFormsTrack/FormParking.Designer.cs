@@ -45,6 +45,7 @@
             this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.Sort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBoxParking.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -193,11 +194,22 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // Sort
+            // 
+            this.Sort.Location = new System.Drawing.Point(893, 27);
+            this.Sort.Name = "Sort";
+            this.Sort.Size = new System.Drawing.Size(104, 46);
+            this.Sort.TabIndex = 11;
+            this.Sort.Text = "Сортировать";
+            this.Sort.UseVisualStyleBackColor = true;
+            this.Sort.Click += new System.EventHandler(this.Sort_Click);
+            // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1005, 461);
+            this.Controls.Add(this.Sort);
             this.Controls.Add(this.textBoxPlace);
             this.Controls.Add(this.buttonDelParking);
             this.Controls.Add(this.listBoxParking);
@@ -209,7 +221,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormParking";
-            this.Text = "FormParking";
+            this.Text = "Parking";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).EndInit();
             this.groupBoxParking.ResumeLayout(false);
             this.groupBoxParking.PerformLayout();
@@ -239,5 +251,6 @@
         private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button Sort;
     }
 }

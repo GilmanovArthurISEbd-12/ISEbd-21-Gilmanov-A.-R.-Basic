@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsTrack
 {
-    class Benzovoz  : Track
+    class Benzovoz  : Track, IEquatable<Benzovoz>
     {
         public Color DopColor { private set; get; }
-
         public bool DangerLight { private set; get; }
-
         public bool Cistern { private set; get; }
-
         public Benzovoz(int maxSpeed, float weight, Color mainColor, Color dopColor, bool dangerLight, bool cistern) : 
             base(maxSpeed, weight, mainColor, 100, 100)
         {
@@ -23,7 +20,6 @@ namespace WindowsFormsTrack
             DangerLight = dangerLight;
             Cistern = cistern;
         }
-
         public Benzovoz(string info) : base(info)
         {
             string[] strs = info.Split(separator);
@@ -67,5 +63,59 @@ namespace WindowsFormsTrack
              $"{base.ToString()}{separator}{DopColor.Name}{separator}{Cistern}{separator}{DangerLight}";
         
             }
+
+        public bool Equals(Benzovoz other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            if (DopColor != other.DopColor)
+            {
+                return false;
+            }
+            if (DangerLight != other.DangerLight)
+            {
+                return false;
+            }
+            if (Cistern != other.Cistern)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+            return false;
+            }
+            if (!(obj is Benzovoz trackObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(trackObj);
+            }
+        }
+
     }
 }

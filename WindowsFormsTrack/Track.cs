@@ -2,15 +2,14 @@
 using System.Drawing;
 namespace WindowsFormsTrack
 {
-    public class Track : Vehicle
+    public class Track : Vehicle, IEquatable<Track>
     {
-
         protected readonly int trackWidth = 100;
-
+      
         protected readonly int trackHeight = 100;
-
+    
         protected readonly char separator = ';';
-
+  
         public Track(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
@@ -93,6 +92,47 @@ namespace WindowsFormsTrack
         public override string ToString()
         {
             return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
+        }
+
+        public bool Equals(Track other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Track trackObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(trackObj);
+            }
         }
     }
 

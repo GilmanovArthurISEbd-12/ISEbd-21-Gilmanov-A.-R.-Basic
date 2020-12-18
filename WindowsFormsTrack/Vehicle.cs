@@ -7,7 +7,7 @@ namespace WindowsFormsTrack
         protected float _startPosX;
 
         protected float _startPosY;
-
+ 
         protected int _pictureWidth;
 
         protected int _pictureHeight;

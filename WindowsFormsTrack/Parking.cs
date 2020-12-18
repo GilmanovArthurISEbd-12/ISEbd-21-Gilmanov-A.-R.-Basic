@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,19 +8,25 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsTrack
 {
-    public class Parking<T> where T : class, ITransport
+    public class Parking<T> : IEnumerator<T>, IEnumerable<T>
+        where T : class, ITransport
     {
+
         private readonly List<T> _places;
 
         private readonly int _maxCount = 12;
 
         private readonly int pictureWidth;
- 
+
         private readonly int pictureHeight;
 
         private readonly int _placeSizeWidth = 210;
 
         private readonly int _placeSizeHeight = 110;
+ 
+        private int _currentIndex;
+        public T Current => _places[_currentIndex];
+        object IEnumerator.Current => _places[_currentIndex];
 
         public Parking(int picWidth, int picHeight)
         {
@@ -29,6 +36,7 @@ namespace WindowsFormsTrack
             pictureWidth = picWidth;
             pictureHeight = picHeight;
             _maxCount = width * height;
+            _currentIndex = -1;
         }
 
         public static bool operator +(Parking<T> p, T track)
@@ -38,7 +46,10 @@ namespace WindowsFormsTrack
             {
                 throw new ParkingOverflowException();
             }
-
+            if (p._places.Contains(track))
+            {
+                throw new ParkingAlreadyHaveException();
+            }
             p._places.Add(track);
             return true;
         }
@@ -54,7 +65,7 @@ namespace WindowsFormsTrack
             return track;
             
         }
- 
+
         public void Draw(Graphics g)
         {
             DrawMarking(g);
@@ -99,6 +110,33 @@ namespace WindowsFormsTrack
                 return null;
             }
             return _places[index];
-        }
+        }
+
+        public void Sort() => _places.Sort((IComparer<T>)new TrackComparer());
+
+        public void Dispose()
+        {
+        }
+
+        public bool MoveNext()
+        {
+            _currentIndex++;
+            return (_currentIndex < _places.Count);
+        }
+
+        public void Reset()
+        {
+            _currentIndex = -1;
+        }
+ 
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
+        }
     }
 }

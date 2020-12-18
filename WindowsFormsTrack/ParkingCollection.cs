@@ -9,6 +9,7 @@ namespace WindowsFormsTrack
 {
     class ParkingCollection
     {
+
         readonly Dictionary<string, Parking<Vehicle>> parkingStages;
 
         public List<string> Keys => parkingStages.Keys.ToList();
@@ -18,7 +19,7 @@ namespace WindowsFormsTrack
         private readonly int pictureHeight;
 
         private readonly char separator = ':';
- 
+
         public ParkingCollection(int pictureWidth, int pictureHeight)
         {
             parkingStages = new Dictionary<string, Parking<Vehicle>>();
@@ -56,7 +57,7 @@ namespace WindowsFormsTrack
 
             }
         }
-
+       
         public bool SaveData(string filename)
         {
             if (File.Exists(filename))
@@ -69,8 +70,7 @@ namespace WindowsFormsTrack
                 foreach (var level in parkingStages)
                 {
                     sw.WriteLine($"Parking{separator}{level.Key}");
-                    ITransport track = null;
-                    for (int i = 0; (track = level.Value.GetNext(i)) != null; i++)
+                    foreach (ITransport track in level.Value)
                     {
 
                         if (track.GetType().Name == "Track")
@@ -138,9 +138,7 @@ namespace WindowsFormsTrack
                 }
                 throw new FormatException("Неверный формат файла");
             }
-
         }
-
     }
 }
 
