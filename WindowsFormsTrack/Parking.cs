@@ -9,13 +9,12 @@ namespace WindowsFormsTrack
 {
     public class Parking<T> where T : class, ITransport
     {
-
         private readonly List<T> _places;
 
         private readonly int _maxCount = 12;
 
         private readonly int pictureWidth;
-
+ 
         private readonly int pictureHeight;
 
         private readonly int _placeSizeWidth = 210;
@@ -37,7 +36,7 @@ namespace WindowsFormsTrack
 
             if (p._places.Count >= p._maxCount)
             {
-                return false;
+                throw new ParkingOverflowException();
             }
 
             p._places.Add(track);
@@ -48,14 +47,14 @@ namespace WindowsFormsTrack
         {
             if (index < -1 || index > p._places.Count)
             {
-                return null;
+                throw new ParkingNotFoundException(index);
             }
             T track = p._places[index];
             p._places.RemoveAt(index);
             return track;
             
         }
-
+ 
         public void Draw(Graphics g)
         {
             DrawMarking(g);
@@ -71,7 +70,7 @@ namespace WindowsFormsTrack
                     }
                 }
                 
-                _places[i].SetPosition(4 + i / 4 * _placeSizeWidth + 4, i % 4 *
+                _places[i].SetPosition(3 + i / 3 * _placeSizeWidth + 4, i % 3 *
                _placeSizeHeight, pictureWidth, pictureHeight);
                 _places[i].DrawTransport(g);
 
@@ -100,6 +99,6 @@ namespace WindowsFormsTrack
                 return null;
             }
             return _places[index];
-        }
+        }
     }
 }
