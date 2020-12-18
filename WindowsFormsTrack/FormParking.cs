@@ -13,6 +13,7 @@ namespace WindowsFormsTrack
 {
     public partial class FormParking : Form
     {
+
         private readonly ParkingCollection parkingCollection;
 
         private readonly Logger logger;
@@ -55,6 +56,7 @@ namespace WindowsFormsTrack
                 parkingCollection[listBoxParking.SelectedItem.ToString()].Draw(gr);
                 pictureBoxParking.Image = bmp;
             }
+
         }
 
         private void buttonAddParking_Click(object sender, EventArgs e)
@@ -74,7 +76,7 @@ namespace WindowsFormsTrack
             if (listBoxParking.SelectedIndex > -1)
             {
                 if (MessageBox.Show($"Удалить парковку { listBoxParking.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo,
-               MessageBoxIcon.Question) == DialogResult.Yes)
+                MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     logger.Info($"Удалили парковку { listBoxParking.SelectedItem.ToString()}");
 
@@ -91,14 +93,13 @@ namespace WindowsFormsTrack
                 try
                 {
                     var track = parkingCollection[listBoxParking.SelectedItem.ToString()] -
-                  Convert.ToInt32(maskedTextBoxParking.Text);
+                Convert.ToInt32(maskedTextBoxParking.Text);
                     if (track != null)
                     {
                         FormTrack form = new FormTrack();
                         form.SetTrack(track);
                         form.ShowDialog();
                         logger.Info($"Изъят автомобиль {track} с места { maskedTextBoxParking.Text}");
-
                         Draw();
                     }
                 }
@@ -171,7 +172,7 @@ namespace WindowsFormsTrack
                 {
 
                     MessageBox.Show("Сохранение прошло успешно", "Результат",
-                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                     logger.Info("Сохранено в файл " + saveFileDialog1.FileName);
                 }
                 catch (Exception ex)
@@ -183,7 +184,6 @@ namespace WindowsFormsTrack
             }
         }
 
-
         private void ЗагрузитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -193,7 +193,7 @@ namespace WindowsFormsTrack
                     if (parkingCollection.LoadData(openFileDialog1.FileName))
                     {
                         MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
-                       MessageBoxIcon.Information);
+                        MessageBoxIcon.Information);
                         logger.Info("Загружено из файла " + openFileDialog1.FileName);
                         ReloadLevels();
                         Draw();
@@ -205,6 +205,16 @@ namespace WindowsFormsTrack
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void Sort_Click(object sender, EventArgs e)
+        {
+            if (listBoxParking.SelectedIndex > -1)
+            {
+                parkingCollection[listBoxParking.SelectedItem.ToString()].Sort();
+                Draw();
+                logger.Info("Сортировка уровней");
             }
         }
     }

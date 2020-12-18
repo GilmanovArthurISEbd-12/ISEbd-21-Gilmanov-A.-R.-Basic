@@ -10,5 +10,6 @@ namespace WindowsFormsTrack
     {
         public ParkingOverflowException() : base("На парковке нет свободных мест")
         { }
+
    }
 }
