@@ -3,6 +3,7 @@ namespace WindowsFormsTrack
 {
     public class Track : Vehicle
     {
+
         protected readonly int trackWidth = 100;
 
         protected readonly int trackHeight = 100;
@@ -28,28 +29,28 @@ namespace WindowsFormsTrack
             float step = MaxSpeed * 100 / Weight;
             switch (direction)
             {
-                // вправо
+                
                 case Direction.Right:
                     if (_startPosX + step < _pictureWidth - trackWidth)
                     {
                         _startPosX += step;
                     }
                     break;
-                //влево
+               
                 case Direction.Left:
                     if (_startPosX - step > 0)
                     {
                         _startPosX -= step;
                     }
                     break;
-                //вверх
+              
                 case Direction.Up:
                     if (_startPosY - step > 0)
                     {
                         _startPosY -= step;
                     }
                     break;
-                //вниз
+               
                 case Direction.Down:
                     if (_startPosY + step < _pictureHeight - trackHeight)
                     {
@@ -61,8 +62,7 @@ namespace WindowsFormsTrack
         public override void DrawTransport(Graphics g)
         {
             System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(MainColor);
-            Pen blackPen = new Pen(Color.FromArgb(255, 0, 0, 0), 9);
-
+            Pen blackPen = new Pen(Color.FromArgb(255, 0, 0, 0), 4);
             //ось
             g.FillRectangle(myBrush, _startPosX + 5, _startPosY + 50, 85, 10);
             //кабина

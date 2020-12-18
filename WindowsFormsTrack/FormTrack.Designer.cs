@@ -113,7 +113,7 @@
             this.buttonCreateTrack.TabIndex = 6;
             this.buttonCreateTrack.Text = "Создать грузовик";
             this.buttonCreateTrack.UseVisualStyleBackColor = true;
-            this.buttonCreateTrack.Click += new System.EventHandler(this.buttonCreatePlane_Click);
+            this.buttonCreateTrack.Click += new System.EventHandler(this.buttonCreateTrack_Click);
             // 
             // FormTrack
             // 
@@ -129,7 +129,7 @@
             this.Controls.Add(this.pictureBoxTrack);
             this.Name = "FormTrack";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "FormTrack";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTrack)).EndInit();
             this.ResumeLayout(false);
 

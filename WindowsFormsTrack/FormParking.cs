@@ -45,7 +45,7 @@ namespace WindowsFormsTrack
             if (listBoxParking.SelectedIndex > -1)
             {
                 Bitmap bmp = new Bitmap(pictureBoxParking.Width,
-               pictureBoxParking.Height);
+                pictureBoxParking.Height);
                 Graphics gr = Graphics.FromImage(bmp);
                 parkingCollection[listBoxParking.SelectedItem.ToString()].Draw(gr);
                 pictureBoxParking.Image = bmp;
@@ -70,7 +70,7 @@ namespace WindowsFormsTrack
             if (listBoxParking.SelectedIndex > -1)
             {
                 if (MessageBox.Show($"Удалить парковку { listBoxParking.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo,
-               MessageBoxIcon.Question) == DialogResult.Yes)
+              MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     parkingCollection.DelParking(listBoxParking.Text);
                     ReloadLevels();
@@ -80,48 +80,9 @@ namespace WindowsFormsTrack
 
         private void buttonSetTrack_Click(object sender, EventArgs e)
         {
-            if (listBoxParking.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var track = new Track(100, 1000, dialog.Color);
-                    if (parkingCollection[listBoxParking.SelectedItem.ToString()] +
-                   track)
-                    {
-                        Draw();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Парковка переполнена");
-                    }
-                }
-            }
-        }
-        private void buttonSetBenzovoz_Click(object sender, EventArgs e)
-        {
-            if (listBoxParking.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    ColorDialog dialogDop = new ColorDialog();
-                    if (dialogDop.ShowDialog() == DialogResult.OK)
-                    {
-                        var car = new Benzovoz(100, 1000, dialog.Color,
-                       dialogDop.Color, true, true);
-                        if (parkingCollection[listBoxParking.SelectedItem.ToString()] + car)
-                        {
-                            Draw();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Парковка переполнена");
-                        }
-                    }
-                }
-            }
-
+            var formTrackConfig = new FormTrackConfig();
+            formTrackConfig.AddEvent(AddTrack);
+            formTrackConfig.Show();
         }
 
         private void buttonPickUpTrack_Click(object sender, EventArgs e)
@@ -137,6 +98,21 @@ namespace WindowsFormsTrack
                     form.ShowDialog();
                 }
                 Draw();
+            }
+        }
+
+        private void AddTrack(Vehicle track)
+        {
+            if (track != null && listBoxParking.SelectedIndex > -1)
+            {
+                if ((parkingCollection[listBoxParking.SelectedItem.ToString()]) + track)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Грузовик не удалось поставить");
+                }
             }
         }
 

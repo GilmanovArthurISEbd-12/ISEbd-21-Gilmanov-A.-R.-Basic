@@ -24,6 +24,11 @@ namespace WindowsFormsTrack
             Cistern = cistern;
         }
 
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
+        }
+
         public override void DrawTransport(Graphics g)
         {
             System.Drawing.SolidBrush myBrush2 = new System.Drawing.SolidBrush(DopColor);
@@ -32,12 +37,14 @@ namespace WindowsFormsTrack
             {
                 g.FillRectangle(myBrush2, _startPosX + 70, _startPosY + 25, 15, 5);
             }
+
             if (Cistern)
             {
                 g.FillEllipse(myBrush2, _startPosX + 5, _startPosY + 30, 50, 20);
             }
 
             base.DrawTransport(g);
+           
         }
     }
 }
