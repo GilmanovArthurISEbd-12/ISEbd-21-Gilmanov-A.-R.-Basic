@@ -28,13 +28,11 @@ namespace WindowsFormsTrack
             {
                 listBoxParking.Items.Add(parkingCollection.Keys[i]);
             }
-            if (listBoxParking.Items.Count > 0 && (index == -1 || index >=
-          listBoxParking.Items.Count))
+            if (listBoxParking.Items.Count > 0 && (index == -1 || index >= listBoxParking.Items.Count))
             {
                 listBoxParking.SelectedIndex = 0;
             }
-            else if (listBoxParking.Items.Count > 0 && index > -1 && index <
-           listBoxParking.Items.Count)
+            else if (listBoxParking.Items.Count > 0 && index > -1 && index < listBoxParking.Items.Count)
             {
                 listBoxParking.SelectedIndex = index;
             }
@@ -45,7 +43,7 @@ namespace WindowsFormsTrack
             if (listBoxParking.SelectedIndex > -1)
             {
                 Bitmap bmp = new Bitmap(pictureBoxParking.Width,
-                pictureBoxParking.Height);
+               pictureBoxParking.Height);
                 Graphics gr = Graphics.FromImage(bmp);
                 parkingCollection[listBoxParking.SelectedItem.ToString()].Draw(gr);
                 pictureBoxParking.Image = bmp;
@@ -57,8 +55,7 @@ namespace WindowsFormsTrack
         {
             if (string.IsNullOrEmpty(textBoxPlace.Text))
             {
-                MessageBox.Show("Введите название парковки", "Ошибка",
-               MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Введите название парковки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             parkingCollection.AddParking(textBoxPlace.Text);
@@ -70,21 +67,20 @@ namespace WindowsFormsTrack
             if (listBoxParking.SelectedIndex > -1)
             {
                 if (MessageBox.Show($"Удалить парковку { listBoxParking.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo,
-              MessageBoxIcon.Question) == DialogResult.Yes)
+               MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     parkingCollection.DelParking(listBoxParking.Text);
                     ReloadLevels();
                 }
             }
         }
-
         private void buttonSetTrack_Click(object sender, EventArgs e)
         {
             var formTrackConfig = new FormTrackConfig();
             formTrackConfig.AddEvent(AddTrack);
             formTrackConfig.Show();
         }
-
+       
         private void buttonPickUpTrack_Click(object sender, EventArgs e)
         {
             if (listBoxParking.SelectedIndex > -1 && maskedTextBoxParking.Text != "")
@@ -119,6 +115,42 @@ namespace WindowsFormsTrack
         private void listBoxParking_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
+        }
+
+        private void СохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (parkingCollection.SaveData(saveFileDialog1.FileName))
+                {
+                    MessageBox.Show("Сохранение прошло успешно", "Результат",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не сохранилось", "Результат",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void ЗагрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (parkingCollection.LoadData(openFileDialog1.FileName))
+                {
+                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
+                   MessageBoxIcon.Information);
+                    ReloadLevels();
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

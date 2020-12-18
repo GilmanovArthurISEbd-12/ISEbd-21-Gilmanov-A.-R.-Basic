@@ -13,6 +13,7 @@ namespace WindowsFormsTrack
 	public partial class FormTrack : Form
 	{
 		private ITransport track;
+
 		public FormTrack()
 		{
 			InitializeComponent();
@@ -45,6 +46,7 @@ namespace WindowsFormsTrack
 
 		private void buttonMove_Click(object sender, EventArgs e)
 		{
+			
 			string name = (sender as Button).Name;
 			switch (name)
 			{
