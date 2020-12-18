@@ -3,6 +3,7 @@ namespace WindowsFormsTrack
 {
     public abstract class Vehicle : ITransport
     {
+
         protected float _startPosX;
 
         protected float _startPosY;

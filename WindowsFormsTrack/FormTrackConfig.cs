@@ -12,6 +12,7 @@ namespace WindowsFormsTrack
 {
     public partial class FormTrackConfig : Form
     {
+
         Vehicle track = null;
 
         private event Action<Vehicle> eventActionAddTrack;
@@ -27,9 +28,8 @@ namespace WindowsFormsTrack
             }
             buttonCancel.Click += (object sender, EventArgs e) => { Close(); };
         }
-
         private void panelColor_MouseDown(object sender, MouseEventArgs e)
-        {  
+        {
             ((Panel)sender).DoDragDrop(((Panel)sender).BackColor, DragDropEffects.Move | DragDropEffects.Copy);
         }
 

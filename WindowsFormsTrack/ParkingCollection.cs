@@ -9,17 +9,16 @@ namespace WindowsFormsTrack
 {
     class ParkingCollection
     {
-
         readonly Dictionary<string, Parking<Vehicle>> parkingStages;
 
         public List<string> Keys => parkingStages.Keys.ToList();
 
         private readonly int pictureWidth;
- 
+
         private readonly int pictureHeight;
 
         private readonly char separator = ':';
-
+ 
         public ParkingCollection(int pictureWidth, int pictureHeight)
         {
             parkingStages = new Dictionary<string, Parking<Vehicle>>();
@@ -73,18 +72,17 @@ namespace WindowsFormsTrack
                     ITransport track = null;
                     for (int i = 0; (track = level.Value.GetNext(i)) != null; i++)
                     {
-                        if (track != null)
+
+                        if (track.GetType().Name == "Track")
                         {
-                            if (track.GetType().Name == "Track")
-                            {
-                                sw.Write($"Track{separator}");
-                            }
-                            if (track.GetType().Name == "Benzovoz")
-                            {
-                                sw.Write($"Benzovoz{separator}");
-                            }
-                            sw.WriteLine(track);
+                            sw.Write($"Track{separator}");
                         }
+                        if (track.GetType().Name == "Benzovoz")
+                        {
+                            sw.Write($"Benzovoz{separator}");
+                        }
+                        sw.WriteLine(track);
+
                     }
                 }
             }
@@ -95,13 +93,14 @@ namespace WindowsFormsTrack
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
+
             }
             using (StreamReader sr = new StreamReader(filename))
             {
                 string line = sr.ReadLine();
                 string key = string.Empty;
-                Benzovoz track = null;
+                Vehicle track = null;
                 if (line.Contains("ParkingCollection"))
                 {
                     parkingStages.Clear();
@@ -122,7 +121,7 @@ namespace WindowsFormsTrack
                         }
                         if (line.Split(separator)[0] == "Track")
                         {
-                            track = new Benzovoz(line.Split(separator)[1]);
+                            track = new Track(line.Split(separator)[1]);
                         }
                         else if (line.Split(separator)[0] == "Benzovoz")
                         {
@@ -131,17 +130,20 @@ namespace WindowsFormsTrack
                         var result = parkingStages[key] + track;
                         if (!result)
                         {
-                            return false;
+                            throw new ArgumentNullException("Не удалось загрузить автомобиль на парковку");
                         }
                         line = sr.ReadLine();
                     }
                     return true;
                 }
-                return false;
+                throw new FormatException("Неверный формат файла");
             }
+
         }
+
     }
 }
+
 
 
 
