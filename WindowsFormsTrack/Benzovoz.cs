@@ -24,6 +24,20 @@ namespace WindowsFormsTrack
             Cistern = cistern;
         }
 
+        public Benzovoz(string info) : base(info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 6)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+                DopColor = Color.FromName(strs[3]);
+                DangerLight = Convert.ToBoolean(strs[4]);
+                Cistern = Convert.ToBoolean(strs[5]);
+            }
+        }
+
         public void SetDopColor(Color color)
         {
             DopColor = color;
@@ -44,7 +58,12 @@ namespace WindowsFormsTrack
             }
 
             base.DrawTransport(g);
-           
+        }
+
+        public override string ToString()
+        {
+           return
+           $"{base.ToString()}{separator}{DopColor.Name}{separator}{Cistern}{separator}{DangerLight}";
         }
     }
 }

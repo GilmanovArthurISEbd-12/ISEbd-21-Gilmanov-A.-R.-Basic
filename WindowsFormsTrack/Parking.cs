@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsTrack
 {
-	public class Parking<T> where T : class, ITransport
+    public class Parking<T> where T : class, ITransport
     {
+
         private readonly List<T> _places;
 
         private readonly int _maxCount = 12;
@@ -18,7 +19,7 @@ namespace WindowsFormsTrack
         private readonly int pictureHeight;
 
         private readonly int _placeSizeWidth = 210;
- 
+
         private readonly int _placeSizeHeight = 110;
 
         public Parking(int picWidth, int picHeight)
@@ -52,6 +53,7 @@ namespace WindowsFormsTrack
             T track = p._places[index];
             p._places.RemoveAt(index);
             return track;
+            
         }
 
         public void Draw(Graphics g)
@@ -89,6 +91,15 @@ namespace WindowsFormsTrack
                 g.DrawLine(pen, i * _placeSizeWidth, 0, i * _placeSizeWidth,
                (pictureHeight / _placeSizeHeight) * _placeSizeHeight);
             }
+        }
+
+        public T GetNext(int index)
+        {
+            if (index < 0 || index >= _places.Count)
+            {
+                return null;
+            }
+            return _places[index];
         }
     }
 }
